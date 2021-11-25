@@ -62,7 +62,7 @@ export default {
         this.title = res.data.title
         this.content = res.data.content
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err)
       })
     },
@@ -83,7 +83,7 @@ export default {
         // console.log(res)
         this.$router.push({name:'ArticleDetail', params:{article_num:this.num}})
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')}

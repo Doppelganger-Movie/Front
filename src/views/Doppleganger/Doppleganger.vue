@@ -170,7 +170,7 @@ export default {
         this.$store.dispatch('saveSelfurl', this.selfurl) //프로필에서 쓸 이미지 vuex로 보내기        
         this.FindDopplegangerInfo()
       })
-      .catch((err) => {
+      .catch(() => {
         // console.log('이미지가 없음')
         // console.log(err)
         this.nullerror="이미지가 없음"
@@ -213,7 +213,7 @@ export default {
           this.onShown()
         }
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err)
         // console.log('닮은 배우가 없음.')
         this.errormsg = '다른 사진을 넣어주세요ㅠㅠ'

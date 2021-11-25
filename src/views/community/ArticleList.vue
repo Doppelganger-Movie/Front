@@ -69,7 +69,7 @@ export default {
         this.articles = res.data
         // console.log('ArticleList 갱신!')
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err)
       })
     },

@@ -60,7 +60,7 @@ export default {
         alert('게시글이 등록되었습니다.')
         this.$router.push({name:'ArticleList'})
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err.data)
       })
     },

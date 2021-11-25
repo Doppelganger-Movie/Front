@@ -200,7 +200,7 @@ export default {
         // console.log(`${this.review_num}번 리뷰 삭제 완료`)
         this.getReviews()
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')} else if (err.response.status === 404) {

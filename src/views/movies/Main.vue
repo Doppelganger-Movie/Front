@@ -62,7 +62,7 @@ export default {
         .then(res => {
           this.TopTenMovies = res.data
         })
-        .catch(err => {
+        .catch(() => {
           // console.log(err)
         })
     },
@@ -77,7 +77,7 @@ export default {
         // console.log(res.data)
         this.DirectorMovies = res.data
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err)
       })
     },
@@ -94,7 +94,7 @@ export default {
         // console.log(res.data['info'])
         this.savedDoppleGnager = res.data['info']
       })
-      .catch(err => {
+      .catch(() => {
         // console.log(err)
         // console.log(this.UserId)
         // console.log('지난 데이터 불러오는 데 실패')
