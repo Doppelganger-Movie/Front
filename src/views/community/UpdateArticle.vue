@@ -78,12 +78,12 @@ export default {
         data: articleItem,
         headers: this.setHeader()
       })
-      .then((res) => {
+      .then(() => {
         // console.log('수정 완료')
         // console.log(res)
         this.$router.push({name:'ArticleDetail', params:{article_num:this.num}})
       })
-      .catch(() => {
+      .catch((err) => {
         // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')}
