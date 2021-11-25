@@ -27,7 +27,6 @@ export default {
     },
     logout: function () {
       localStorage.removeItem('JWT')
-      this.$store.
       this.isLogin = false
       console.log('로그아웃됐으니 로그인으로 이동한다')
       this.$router.push({ name: 'Login' })
@@ -45,7 +44,6 @@ export default {
     } else {
       alert('로그인을 해주세요')
       this.$router.push({ name: 'Login' }).catch(() => {})
-      // if (this.$route.name !=='Login') {this.$router.push({ name: 'Login' })}
     }
   }  
 };

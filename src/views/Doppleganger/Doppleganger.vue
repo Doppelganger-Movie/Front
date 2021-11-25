@@ -12,22 +12,26 @@
               </div>
                 <b-button ref="show" :disabled="show" @click="sendImages" elevation="6" text>도플갱어 찾아보기</b-button>
             </div>
-          </div>
+          </div>          
           <div v-if="doppleganger" class="main-container p-4">
+          <br>
+            <hr v-if="doppleganger" style="width:40%; margin-left:30%; padding:0px; text-align:center;">
+          <!-- <br> -->
             <div class="row justify-content-center">
               <div class="row text-center">
                 <div class="col-lg-12">
-                  <h3 class="section-sub-title">{{ username }}님과 {{ doppleganger.celeb}}님은 {{ doppleganger.confidence }}만큼 닮았습니다! <b-icon icon="emoji-wink" font-scale="1.5"></b-icon><b-icon icon="hand-thumbs-up"></b-icon></h3> 
+                  <h3 class="section-sub-title mb-3">{{ username }}님과 {{ doppleganger.celeb}}님은 {{ (doppleganger.confidence * 100).toFixed(1) }}% 닮았습니다! <b-icon icon="emoji-wink" font-scale="1.5"></b-icon><b-icon icon="hand-thumbs-up"></b-icon></h3> 
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5">
                 <div class="sc-wrapper">
                   <div class="sc-img-wrapper">
-                    <v-img v-if="Selfimgsrc" :src="Selfimgsrc" class="img-fluid" alt="유저이미지"></v-img>
-                    <v-img v-else-if="selfurl" :src="selfurl" class="img-fluid" alt="유저이미지"></v-img>
+                    <img v-if="Selfimgsrc" :src="Selfimgsrc" class="img-fluid" alt="유저이미지">
+                    <img v-else-if="selfurl" :src="selfurl" class="img-fluid" alt="유저이미지">
+                    <!-- <v-img v-else-if="selfurl" :src="selfurl" class="img-fluid" alt="유저이미지"></v-img> -->
                   </div>
                   <div class="sc-content justify-content-center">
-                    <h3>{{ username }}</h3>
+                    <h3 class="text-center">{{ username }}</h3>
                   </div>
                 </div>
               </div>
@@ -36,16 +40,19 @@
                   <div class="sc-img-wrapper">
                     <img :src="doppleganger.celeb_image" class="img-fluid" alt="배우이미지">
                   </div>
-                  <div class="sc-content justify-content-center">
-                    <h3>{{ doppleganger.celeb }}</h3>
+                  <div class="sc-content justify-content-center mx-auto">
+                    <h3 class="text-center">{{ doppleganger.celeb }}</h3>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-if="doppleganger.celeb_movie_id.length">
+            <br>
+            <hr v-if="doppleganger" style="width:40%; margin-left:30%; padding:0px; text-align:center;">
+            <div v-if="doppleganger.celeb_movie_id.length">              
               <div class="row text-center">
                 <div class="col-lg-12">
                   <h3 class="section-sub-title">{{ doppleganger.celeb}}의 출연작 보러가기</h3>
+                  <br>
                 </div>
               </div>
             </div>
@@ -56,6 +63,7 @@
                 </div>
               </div>
             </div>
+            
             <div class="row justify-content-center">
               <div  v-for="(poster, idx) in doppleganger.celeb_movie_poster" :key="idx" class="col-lg-3 col-md-4 col-sm-6 mb-5">
                 <div class="sc-wrapper">
@@ -63,10 +71,16 @@
                     <img :src="poster" alt="poster" class="img-fluid" @click="moveToMovieDetail(doppleganger.celeb_movie_id[idx])" >
                   </div>
                   <div class="sc-content justify-content-center">
-                    <h3>{{ doppleganger.celeb_movie_title[idx] }}</h3>
+                    <h3 class="text-center">{{ doppleganger.celeb_movie_title[idx] }}</h3>
                   </div>
                 </div>
               </div>
+            </div>
+            <br>
+            <hr v-if="doppleganger" style="width:40%; margin-left:30%; padding:0px; text-align:center;">
+            <div class="mx-auto" style="text-align:center;">
+              <h4 class="mt-4 mb-1">결과를 공유하기</h4>
+              <img style="border:none" src="@/assets/images/icon-facebook.png" class="link-icon facebook mt-1 pt-0" @click="shareFacebook">   
             </div>
           </div>
         </div>
@@ -100,6 +114,13 @@ export default {
     }
   },
   methods: {
+    shareFacebook() {
+        var text = `당신의 도플갱어는? : ${this.doppleganger.celeb}, 정확도 ${(this.doppleganger.confidence * 100).toFixed(1)}%`; // 전달할 텍스트
+        var snsText = encodeURIComponent(text);
+        var snsURL   = encodeURIComponent("http://doppelganger-movie.netlify.app")
+        window.open("http://www.facebook.com/sharer/sharer.php?u=" + snsURL + "&text=" + snsText);
+    },
+
     onHidden() {
       // this.$refs.show.focus()
       // this.show=true
@@ -202,10 +223,25 @@ export default {
 }
 </script>
 
+
 <style scoped>
+
+.link-icon { position: relative; display: inline-block; width: auto;    
+font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.facebook { background-image: "./images/icon-facebook.png"; background-repeat: no-repeat; } 
+
 .h3.section-sub-title {
   font-family: 'Montserrat', sans-serif;
 }
+
+h3, h4, p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  border: 2px solid darkgrey;
+}
+
 .card-list {
   margin-top: 3rem;
   margin-left: 0rem;

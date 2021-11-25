@@ -1,6 +1,7 @@
 <template>
   <div class="board">
     <section class="container row justify-content-center mt-10">
+     
       <h1>게시판</h1>
         <div class="wrap">
           <table class="table">
@@ -22,7 +23,9 @@
             </tbody>
           </table>
           <b-button variant="outline-secondary float-right" class="mt-3" @click="moveToCreateArticle">글쓰기</b-button>
-          <!-- <b-pagination
+          
+<!--  
+          <b-pagination 
             v-model="currentPage"
             :total-rows="rows"
             :per-page="perPage"
@@ -40,19 +43,22 @@ import ArticleItem from '@/views/community/ArticleItem.vue'
 import axios from 'axios'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
+
 export default {
   name: 'ArticleList',
   data: function () {
     return {
       articles: null,
-      currentPage: 1,
-      perPage: 10,
+      // currentPage: 1,
+      // perPage: 10,
     }
   },
   components: {
     ArticleItem
   },
   methods: {
+    myClickedEventhandler() {
+    },
     setHeader: function() {
       const token = localStorage.getItem('JWT')
       const header = {
@@ -96,6 +102,7 @@ export default {
 </script>
 
 <style scoped>
+
 h1 {
   text-align: center;
 }

@@ -19,10 +19,10 @@ export default new Vuex.Store({
     SAVE_USERNAME : function (state, result) {
       state.Username = result
     },
-    DELETE_USER_ID : function(state) {
-      state.UserId = null
-      state.Username = null
-    },
+    // DELETE_USER_ID : function(state) {
+    //   state.UserId = null
+    //   state.Username = null
+    // },
     SAVE_SELF_URL : function (state, result) {
       state.Selfurl = result
     }
@@ -34,9 +34,9 @@ export default new Vuex.Store({
     saveUsername: function({commit}, username) {
       commit('SAVE_USERNAME', username)
     },
-    deleteUserId: function ({commit}) {
-      commit('DELETE_USER_ID')
-    },
+    // deleteUserId: function ({commit}) {
+    //   commit('DELETE_USER_ID')
+    // },
     saveSelfurl({commit}, imgurl) {
       commit('SAVE_SELF_URL', imgurl)
     }

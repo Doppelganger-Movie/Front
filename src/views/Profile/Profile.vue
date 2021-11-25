@@ -1,10 +1,10 @@
 <template>
 <div class="container text-center mx-auto text-black">  
-  <div class="profile wrapper">
-    <img v-if="selfImg" :src="selfImg" class="rounded-circle mb-1" alt="프로필 사진" 
+  <div class="profile wrapper p-6">
+    <img v-if="selfImg" :src="selfImg" class="rounded-circle mb-0 mt-3" alt="프로필 사진" 
     style="object-fit: cover;" width="200" height="200">
     <!-- DB 이미지 못불러낼 경우 vuex 저장된 self 이미지 출력 -->
-    <img v-else-if="Selfurl" :src="Selfurl" class="rounded-circle mb-1" alt="프로필 사진" 
+    <img v-else-if="Selfurl" :src="Selfurl" class="rounded-circle mb-0 mt-3" alt="프로필 사진" 
     style="object-fit: cover;" width="200" height="200">
     <pre class="text-black"><h4>
 Welcome!
@@ -12,7 +12,7 @@ Welcome!
     </h4></pre>
     
       <!-- 주석 <button @click="getDoppleganger">TEST</button> -->
-    <hr class="text-black" style="width:30%; text-align:center; margin-left:0">
+    <hr class="text-black" style="width:30%; text-align:center; margin-left:0 margin-top:0px;">
     <!-- 도플갱어 정보  -->
    <h1 v-if="!doppleganger">{{ msg }}</h1>
    <div class="doppleganger" v-if="doppleganger">

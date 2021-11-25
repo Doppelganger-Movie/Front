@@ -19,11 +19,11 @@
           v-slot="{ active, toggle }"      
         >
           <v-card outlined
-            :color="active ? 'primary' : 'black'"
+            :color="active ? 'grey' : 'black'"
             @click="toggle"
             class="ma-5  ma-0 fill-height"
-            height="200"
-            width="100">
+            height="250"
+            width="170">
             <v-img
               :src="movie.celeb_movie_poster" alt="포스터 이미지" 
               @click="moveToMovieDetail(movie.celeb_movie_id)" class="fill-height ma-0">              

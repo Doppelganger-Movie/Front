@@ -1,7 +1,7 @@
 <template>
   <div class='container'>
     <br>
-    <h2 class="text-white">{{movies[0].directors[0]['name']}} 감독의 영화</h2>
+    <h2 class="text-white" style=" font-weight:600;">{{movies[0].directors[0]['name']}} 감독의 영화</h2>
     <v-sheet
       class="mx-auto black"
       elevation="1" 
@@ -19,11 +19,11 @@
           v-slot="{ active, toggle }"
         >
           <v-card 
-            :color="active ? 'primary' : 'black'"
+            :color="active ? 'grey' : 'black'"
             @click="toggle"
             class="ma-5  ma-0 fill-height"
-            height="200"
-            width="100">
+            height="250"
+            width="170">
               <v-img
               :src="movie.poster_path" alt="포스터 이미지" 
               @click="moveToMovieDetail(movie)" class="fill-height ma-0">              

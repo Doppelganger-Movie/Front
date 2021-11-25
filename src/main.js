@@ -7,7 +7,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import vueMoment from 'vue-moment' 
+import Paginate from 'vuejs-paginate' 
+  
 
+Vue.component('paginate', Paginate)
+Vue.use(Paginate)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

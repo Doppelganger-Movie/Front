@@ -8,7 +8,7 @@
 				<!-- <router-link :to="{ name: 'MovieList' }">Movie</router-link> | -->
 				<router-link :to="{ name: 'ArticleList' }"><button class="text-white" id="menuBtn">Community</button></router-link>
 				<router-link :to="{ name: 'Profile' }"><button class="text-white" id="menuBtn">Profile</button></router-link>
-				<router-link :to="{ name: 'Doppleganger' }"><button class="text-white" id="menuBtn">Doppleganger</button></router-link>
+				<router-link :to="{ name: 'Doppleganger' }"><button class="text-white" id="menuBtn">Doppelganger</button></router-link>
 				<router-link @click.native="logout" :to="{ name: 'Main' }"><button class="text-white" id="menuBtn">Log Out</button></router-link>
 				</ul>
 				<ul v-else class="menu">

@@ -43,7 +43,7 @@
       </div>
       <div class="mt-5">
         <b-button variant="outline-secondary float-left" @click="Back">목록</b-button>
-        <b-button variant="outline-secondary float-right" @click="UpdateArticle">작성</b-button>
+        <b-button variant="outline-secondary float-right" @click="UpdateArticle">수정</b-button>
       </div>
     </div>
   </div>
