@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
               <div class="row text-center">
                 <div class="col-lg-12">
-                  <h3 class="section-sub-title">{{ username }}님과 {{ doppleganger.celeb}}님은 {{ doppleganger.confidence }} 닮았습니다! <b-icon icon="emoji-wink" font-scale="1.5"></b-icon><b-icon icon="hand-thumbs-up"></b-icon></h3> 
+                  <h3 class="section-sub-title">{{ username }}님과 {{ doppleganger.celeb}}님은 {{ doppleganger.confidence }}만큼 닮았습니다! <b-icon icon="emoji-wink" font-scale="1.5"></b-icon><b-icon icon="hand-thumbs-up"></b-icon></h3> 
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 mb-5">
