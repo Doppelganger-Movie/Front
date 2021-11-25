@@ -42,8 +42,10 @@ export default {
       this.$store.dispatch('saveUserId', userId)
       // console.log(userId)
     } else {
-      alert('로그인을 해주세요')
+      // alert('로그인을 해주세요')
+      if (this.$route.path !='/accounts/signup') {
       this.$router.push({ name: 'Login' }).catch(() => {})
+      }
     }
   }  
 };
