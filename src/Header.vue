@@ -5,7 +5,6 @@
   	<!-- Navbar content -->
 			<div class="menuWrap">
 				<ul v-if="isLogin" class="menu">
-				<!-- <router-link :to="{ name: 'MovieList' }">Movie</router-link> | -->
 				<router-link :to="{ name: 'ArticleList' }"><button class="text-white" id="menuBtn">Community</button></router-link>
 				<router-link :to="{ name: 'Profile' }"><button class="text-white" id="menuBtn">Profile</button></router-link>
 				<router-link :to="{ name: 'Doppleganger' }"><button class="text-white" id="menuBtn">Doppelganger</button></router-link>
@@ -50,6 +49,8 @@ a{text-decoration:none; color:#333;} */
 	padding: 0 1rem;
 	display:flex;
 	align-items: center;
+	font-family:'Noto Sans KR', sans-serif;
+  font-weight:580;
 }
 .menuWrap {
 	padding-top:1rem;

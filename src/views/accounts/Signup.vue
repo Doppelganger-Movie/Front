@@ -22,7 +22,7 @@
                   <b-icon icon="lock-fill" font-scale="1.5"></b-icon>
                   <input type="password" id="password2" v-model="credentials.password2" placeholder="비밀번호 확인" @keyup.enter="signup">
                 </div>
-                <b-button variant="outline-secondary" class="mt-3 row justify-content-center" @click="signup">회원가입</b-button>
+                <b-button variant="outline-secondary" class="mt-5 row justify-content-center" @click="signup">회원가입</b-button>
               </div>
             </form>
           </div>
@@ -102,12 +102,15 @@ input {
 }
 h1 {
   margin-top: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.75rem;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
+  font-size: 3rem;
 }
 
 .h3, h3 {
   margin-top: 30px;
   font-family: "Archivo Narrow", sans-serif;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:580;
 }
 </style>

@@ -23,7 +23,9 @@
             @click="toggle"
             class="ma-5  ma-0 fill-height"
             height="250"
-            width="170">
+            width="170"
+            style="font-family:'Noto Sans KR', sans-serif;
+  font-weight:550;">
               <v-img
               :src="movie.poster_path" alt="포스터 이미지" 
               @click="moveToMovieDetail(movie)" class="fill-height ma-0">              

@@ -14,14 +14,14 @@
                     <b-icon icon="person" font-scale="1.5"></b-icon>
                     <input type="text" id="username" v-model="credentials.username" placeholder="아이디">
                   </div>
-                  <div class="input_row mt-3" id="id_line">
+                  <div class="input_row mt-4" id="id_line">
                     <b-icon icon="lock" font-scale="1.5"></b-icon>
                     <input type="password" id="password" v-model="credentials.password" placeholder="비밀번호">
                   </div>
-                  <b-button variant="outline-secondary" class="mt-3 row justify-content-center" @click="login">로그인</b-button>
+                  <b-button variant="outline-secondary" class="mt-5 row justify-content-center" @click="login">로그인</b-button>
                 </div>
               </form>
-                <router-link :to="{ name: 'Signup' }"><button class="text-blue mt-5" id="menuBtn">회원이 아니시라면 회원가입을 해주세요.</button></router-link>
+                <router-link :to="{ name: 'Signup' }"><button class="text-blue mt-6" id="menuBtn">회원이 아니시라면 회원가입을 해주세요.</button></router-link>
             </div>
           </div>
         </div>
@@ -40,8 +40,8 @@ export default {
   data: function () {
     return {
       credentials: {
-        username: '',
-        password: '',
+        username: null,
+        password: null,
       },
       errMsg: '',
     }
@@ -54,20 +54,23 @@ export default {
         data: this.credentials
       })
       .then(res => {
-        console.log('로그인됨')
+        // console.log('로그인됨')
         localStorage.setItem('JWT', res.data.access)
         this.$emit('login')
-        console.log(localStorage.getItem('JWT'))
+        // console.log(localStorage.getItem('JWT'))
         var token = localStorage.getItem('JWT')
         var decoded = jwt_decode(token);
         var userId = decoded.user_id
         this.$store.dispatch('saveUserId', userId)
-        console.log(userId)
+        // console.log(userId)
         this.$router.push({name: 'Main'})
       })
       .catch(err => {
-        // console.dir(err.response.data)
+        // console.dir(err.response.data['detail'])
         this.errMsg = err.response.data.detail
+        alert('아이디와 비밀번호를 확인해주세요.')
+        this.credentials.username = null
+        this.credentials.password = null
       })
     }
   }
@@ -105,12 +108,14 @@ input {
 }
 h1 {
   margin-top: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.75rem;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
+  font-size: 3rem;
 }
 
 .h3, h3 {
   margin-top: 30px;
-  font-family: "Archivo Narrow", sans-serif;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:580;
 }
 </style>

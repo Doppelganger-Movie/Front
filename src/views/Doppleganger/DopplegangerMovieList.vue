@@ -23,7 +23,9 @@
             @click="toggle"
             class="ma-5  ma-0 fill-height"
             height="250"
-            width="170">
+            width="170"
+            style="font-family:'Noto Sans KR', sans-serif;
+  font-weight:550;">
             <v-img
               :src="movie.celeb_movie_poster" alt="포스터 이미지" 
               @click="moveToMovieDetail(movie.celeb_movie_id)" class="fill-height ma-0">              
@@ -63,23 +65,14 @@ export default {
   methods: {
    moveToMovieDetail: function (id) {
      this.selectMovie = id
-     console.log(id)
+    //  console.log(id)
      this.$router.push({name: 'MovieDetail', params: {'movie_num':this.selectMovie}})
     },
   },
-  // computed: {
-  //   posterPath () {
-  //     const poster_url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path
-  //     return poster_url
-  //   }
-  // }
 }
 </script>
 
 <style>
-/* .img {
-  object-fit: cover;
-} */
 .container {
   text-decoration-color: white;
 }

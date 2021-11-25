@@ -28,19 +28,19 @@ export default {
     logout: function () {
       localStorage.removeItem('JWT')
       this.isLogin = false
-      console.log('로그아웃됐으니 로그인으로 이동한다')
+      // console.log('로그아웃됐으니 로그인으로 이동한다')
       this.$router.push({ name: 'Login' })
     }
   },
   created: function () {
     if (localStorage.getItem('JWT')) {
-      console.log('created!-> isLogin=True')
+      // console.log('created!-> isLogin=True')
       this.isLogin = true
       var token = localStorage.getItem('JWT')
       var decoded = jwt_decode(token);
       var userId = decoded.user_id
       this.$store.dispatch('saveUserId', userId)
-      console.log(userId)
+      // console.log(userId)
     } else {
       alert('로그인을 해주세요')
       this.$router.push({ name: 'Login' }).catch(() => {})

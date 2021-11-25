@@ -19,8 +19,8 @@
         </table>
       </div>
         <div class="mt-5">
-          <b-button variant="outline-secondary float-left" @click="Back">목록</b-button>
-          <b-button variant="outline-secondary float-right" @click="createArticle">작성</b-button>
+          <b-button variant="outline-dark float-left" style="font-weight:600;" @click="Back">목록</b-button>
+          <b-button variant="outline-dark float-right" style="font-weight:600;" @click="createArticle">작성</b-button>
         </div>
     </div>
   </div>
@@ -61,7 +61,7 @@ export default {
         this.$router.push({name:'ArticleList'})
       })
       .catch(err => {
-        console.log(err.data)
+        // console.log(err.data)
       })
     },
     Back () {
@@ -83,14 +83,14 @@ export default {
 .CreateForm {
   display: flex;
   flex-direction: column;
-  /* align-items:center; */
   justify-content: center;
-  /* margin: 1rem auto; */
 }
 .board {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 .container {
   width: 750px;

@@ -1,27 +1,4 @@
 <template>
-  <!-- <div class="UpdateForm">
-    <h1>게시글 수정</h1>
-    <div class="AddWrap">
-      <table class="tbAdd">
-        <colgroup>
-          <col width="15%" />
-          <col width="*" />
-        </colgroup>
-        <tr>
-          <th>제목</th>
-          <td><input type="text" v-model="title" ref="subject" /></td>
-        </tr>
-        <tr>
-          <th>내용</th>
-          <td><textarea v-model="content" ref="cont"></textarea></td>
-        </tr>
-      </table>
-    </div>
-		<div class="btnWrap">
-			<button @click="Back" class="btn btn-secondary">목록</button>
-			<button @click="UpdateArticle" class="btnAdd btn">글 수정</button>
-		</div>
-  </div> -->
   <div class="board">
     <div class="container text-center mt-10">
       <h1>게시판 수정</h1>
@@ -42,8 +19,8 @@
         </table>
       </div>
       <div class="mt-5">
-        <b-button variant="outline-secondary float-left" @click="Back">목록</b-button>
-        <b-button variant="outline-secondary float-right" @click="UpdateArticle">수정</b-button>
+        <b-button variant="outline-dark float-left" style="font-weight:600;" @click="Back">목록</b-button>
+        <b-button variant="outline-dark float-right" style="font-weight:600;" @click="UpdateArticle">수정</b-button>
       </div>
     </div>
   </div>
@@ -86,7 +63,7 @@ export default {
         this.content = res.data.content
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
     },
     UpdateArticle: function () {
@@ -102,12 +79,12 @@ export default {
         headers: this.setHeader()
       })
       .then((res) => {
-        console.log('수정 완료')
-        console.log(res)
+        // console.log('수정 완료')
+        // console.log(res)
         this.$router.push({name:'ArticleDetail', params:{article_num:this.num}})
       })
       .catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')}
         this.$router.push({name:'ArticleDetail', params:{article_num:this.num}})
@@ -139,6 +116,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 .tbAdd {
   display: flex;

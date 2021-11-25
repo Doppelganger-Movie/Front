@@ -16,12 +16,6 @@ export default {
 
     },
  },
-  computed: {
-    // posterPath () {
-    //   const poster_url = 'https://image.tmdb.org/t/p/w300/' + this.movies.poster_path
-    //   return poster_url
-    // }
-  }
 }
 </script>
 

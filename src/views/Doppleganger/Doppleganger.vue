@@ -10,38 +10,40 @@
                 <v-file-input label="2MB 이하로 넣어주세요." v-model="files" prepend-icon="mdi-camera" show-size counter>
                 </v-file-input>
               </div>
-                <b-button ref="show" :disabled="show" @click="sendImages" elevation="6" text>도플갱어 찾아보기</b-button>
+                <b-button ref="show" :disabled="show" @click="sendImages" elevation="6" style="font-weight:600;" variant="dark" text>도플갱어 찾아보기</b-button>
             </div>
-          </div>          
-          <div v-if="doppleganger" class="main-container p-4">
+          </div>
+          <div v-if="errormsg" class="text-center"><br><br><br><h3>사진 크기를 확인해주세요 <b-icon icon="emoji-frown" font-scale="1.5"> </b-icon></h3> </div>
+          <div v-else-if="nullerror" class="text-center"><br><br><br><h3>사진을 업로드해주세요 <b-icon icon="emoji-frown" font-scale="1.5"> </b-icon></h3> </div>
+          <div v-else-if="doppleganger" class="main-container p-4">
           <br>
             <hr v-if="doppleganger" style="width:40%; margin-left:30%; padding:0px; text-align:center;">
-          <!-- <br> -->
             <div class="row justify-content-center">
               <div class="row text-center">
                 <div class="col-lg-12">
                   <h3 class="section-sub-title mb-3">{{ username }}님과 {{ doppleganger.celeb}}님은 {{ (doppleganger.confidence * 100).toFixed(1) }}% 닮았습니다! <b-icon icon="emoji-wink" font-scale="1.5"></b-icon><b-icon icon="hand-thumbs-up"></b-icon></h3> 
                 </div>
               </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="sc-wrapper">
-                  <div class="sc-img-wrapper">
-                    <img v-if="Selfimgsrc" :src="Selfimgsrc" class="img-fluid" alt="유저이미지">
-                    <img v-else-if="selfurl" :src="selfurl" class="img-fluid" alt="유저이미지">
-                    <!-- <v-img v-else-if="selfurl" :src="selfurl" class="img-fluid" alt="유저이미지"></v-img> -->
-                  </div>
-                  <div class="sc-content justify-content-center">
-                    <h3 class="text-center">{{ username }}</h3>
+              <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6 mb-5">
+                  <div class="sc-wrapper">
+                    <div class="sc-img-wrapper">
+                      <b-card v-if="Selfimgsrc" :img-src="Selfimgsrc" img-alt="user-img" img-top tag="article" style="width: 280px;" border-variant="light" ></b-card>
+                      <b-card v-else-if="selfurl" :img-src="selfurl" img-alt="user-img" img-top tag="article" style="width: 280px;" border-variant="light"></b-card>
+                    </div>
+                    <div class="sc-content justify-content-center">
+                      <h3 class="text-center pr-11">{{ username }}</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5">
-                <div class="sc-wrapper">
-                  <div class="sc-img-wrapper">
-                    <img :src="doppleganger.celeb_image" class="img-fluid" alt="배우이미지">
-                  </div>
-                  <div class="sc-content justify-content-center mx-auto">
-                    <h3 class="text-center">{{ doppleganger.celeb }}</h3>
+                <div class="col-lg-3 col-sm-6 mb-5">
+                  <div class="sc-wrapper">
+                    <div class="sc-img-wrapper ml-4 pl-3">
+                      <b-card :img-src="doppleganger.celeb_image" img-alt="celeb-img" img-top tag="article" style="width: 280px;" border-variant="light" ></b-card>
+                    </div>
+                    <div class="sc-content justify-content-center mx-auto">
+                      <h3 class="text-center ml-1">{{ doppleganger.celeb }}</h3>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -65,13 +67,13 @@
             </div>
             
             <div class="row justify-content-center">
-              <div  v-for="(poster, idx) in doppleganger.celeb_movie_poster" :key="idx" class="col-lg-3 col-md-4 col-sm-6 mb-5">
+              <div  v-for="(poster, idx) in doppleganger.celeb_movie_poster" :key="idx" class="col-lg-2 col-md-3 col-sm-4 mb-5">
                 <div class="sc-wrapper">
                   <div class="sc-img-wrapper">
                     <img :src="poster" alt="poster" class="img-fluid" @click="moveToMovieDetail(doppleganger.celeb_movie_id[idx])" >
                   </div>
                   <div class="sc-content justify-content-center">
-                    <h3 class="text-center">{{ doppleganger.celeb_movie_title[idx] }}</h3>
+                    <h5 class="text-center mt-2">{{ doppleganger.celeb_movie_title[idx] }}</h5>
                   </div>
                 </div>
               </div>
@@ -111,6 +113,8 @@ export default {
       doppleganger: null,
       username: null,
       show: false,
+      errormsg: null,
+      nullerror: null,
     }
   },
   methods: {
@@ -124,7 +128,7 @@ export default {
     onHidden() {
       // this.$refs.show.focus()
       // this.show=true
-      console.log('되고잇나??', this.show)
+      // console.log('되고잇나??', this.show)
     },
     onShown() {
       // this.doppleganger
@@ -134,7 +138,8 @@ export default {
       this.onHidden()
       this.doppleganger = null
       this.msg = null
-
+      this.errormsg = null
+      this.nullerror = null
       let info = new FormData()
       info.append('files', this.files)
       if (this.files===null) {             // 파일을 보내지 않을 경우
@@ -155,19 +160,22 @@ export default {
         `${SERVER_URL}/doppleganger/images/`, 
         info, config)
       .then((res) => {
-        console.log(res.data) // 필요한 것 넣어서 쓰면됨
+        // console.log(res.data) // 필요한 것 넣어서 쓰면됨
         let img_path = res.data.upload_image
-        console.log(`${SERVER_URL}${img_path}`)
+        // console.log(`${SERVER_URL}${img_path}`)
         this.Selfimgsrc = `${SERVER_URL}${img_path}`
 
         this.selfurl = URL.createObjectURL(this.files)
-        console.log(this.selfurl)
+        // console.log(this.selfurl)
         this.$store.dispatch('saveSelfurl', this.selfurl) //프로필에서 쓸 이미지 vuex로 보내기        
         this.FindDopplegangerInfo()
       })
       .catch((err) => {
-        console.log('이미지가 없음')
-        console.log(err)
+        // console.log('이미지가 없음')
+        // console.log(err)
+        this.nullerror="이미지가 없음"
+        this.show = false
+        this.onShown()
       })
     },
 
@@ -186,7 +194,7 @@ export default {
         headers: this.setHeader()
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.noImg) {
           this.msg = '아직 사진을 올리지 않았어요! 사진을 올려주세요.'
         } else if (res.data.celeb_movie_id.length === 0) {
@@ -206,8 +214,11 @@ export default {
         }
       })
       .catch(err => {
-        console.log(err)
-        console.log('닮은 배우가 없음.')
+        // console.log(err)
+        // console.log('닮은 배우가 없음.')
+        this.errormsg = '다른 사진을 넣어주세요ㅠㅠ'
+        this.show = false
+        this.onShown()
       })
     },
     moveToMovieDetail: function (movie_id) {
@@ -231,11 +242,12 @@ font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top:
 .link-icon.facebook { background-image: "./images/icon-facebook.png"; background-repeat: no-repeat; } 
 
 .h3.section-sub-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family:'Noto Sans KR', sans-serif;
 }
 
-h3, h4, p {
-  font-family: 'Montserrat', sans-serif;
+h3, h4, h5, p {
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 
 img {

@@ -187,21 +187,21 @@ export default {
     },
     // ------- DeleteReview---------// 
     deleteReview: function(review) {
-      console.log(review.id)
+      // console.log(review.id)
       this.review_num = review.id
-      console.log(review.num)
-      console.log('삭제 작업 시작')
+      // console.log(review.num)
+      // console.log('삭제 작업 시작')
       axios({
         method: 'delete',
         url:`${SERVER_URL}/reviews/${this.num}/${this.review_num}/`,
         headers: this.setHeader()
       })
       .then(() => {
-        console.log(`${this.review_num}번 리뷰 삭제 완료`)
+        // console.log(`${this.review_num}번 리뷰 삭제 완료`)
         this.getReviews()
       })
       .catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')} else if (err.response.status === 404) {
           this.blank = true
@@ -222,14 +222,14 @@ export default {
         headers: this.setHeader()
       })
       .then(() => {
-        console.log(`${this.review_num}번 리뷰 수정 완료`)
+        // console.log(`${this.review_num}번 리뷰 수정 완료`)
         this.update_state=false
         this.update_content = null
         this.update_vote = null
         this.getReviews()
       })
       .catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         if (err.response.status === 403) {
         alert('작성자가 아닙니다.')} 
         this.update_state=false
@@ -240,7 +240,7 @@ export default {
     },
     ActivateUpdate: function(review) {
       if (review.user === this.userId) {
-        console.log(review.user, this.userId)
+        // console.log(review.user, this.userId)
         this.review_num = review.id
         this.update_state = true
         this.update_content = review.content
@@ -261,13 +261,13 @@ export default {
         headers: this.setHeader()
       })
       .then(() => {
-        console.log('리뷰 생성 완료')
+        // console.log('리뷰 생성 완료')
         this.content = null
         this.vote = 3
         this.getReviews()
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
     },
     // ------- ReadReviews---------// 
@@ -278,12 +278,12 @@ export default {
         headers: this.setHeader()
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         this.blank = false
         this.reviews = res.data
       })
       .catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         if (err.response.status === 404) {
         this.blank = true
         }
@@ -297,12 +297,12 @@ export default {
         headers: this.setHeader()
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         this.blank = false
         this.movie = res.data
       })
       .catch(err => {
-        console.log(err.response)
+        // console.log(err.response)
         if (err.response.status === 404) {
         this.blank = true
         }

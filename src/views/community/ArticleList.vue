@@ -22,20 +22,11 @@
               </tr>
             </tbody>
           </table>
-          <b-button variant="outline-secondary float-right" class="mt-3" @click="moveToCreateArticle">글쓰기</b-button>
+          <b-button variant="dark float-right" style="font-weight:600;" class="mt-3" @click="moveToCreateArticle">글쓰기</b-button>
           
-<!--  
-          <b-pagination 
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            align="center"
-            class="mt-4"
-          ></b-pagination> -->
         </div>
     </section>
   </div>
-  <!-- :length="articles.length / 10 +1" -->
 </template>
 
 <script>
@@ -49,8 +40,6 @@ export default {
   data: function () {
     return {
       articles: null,
-      // currentPage: 1,
-      // perPage: 10,
     }
   },
   components: {
@@ -78,11 +67,10 @@ export default {
       .then(res => {
         console.log(res.data)
         this.articles = res.data
-        // this.perPage = articles.length / 10 +1,
-        console.log('ArticleList 갱신!')
+        // console.log('ArticleList 갱신!')
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
     },
   },
@@ -90,10 +78,6 @@ export default {
     rows() {
       return this.articles.length
     },
-    // userId : function () {
-    //   const userId = this.$store.state.UserId
-    //   return userId
-    // },
   },
   created: function () {
     this.getArticles()
@@ -105,12 +89,18 @@ export default {
 
 h1 {
   text-align: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 th {
   text-align: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 tr {
   text-align: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 .board {
   display: flex;
@@ -120,8 +110,5 @@ tr {
 .content {
   width: fit-content;
 }
-/* .btnRightWrap {
-  display: row;
-  justify-items: center;
-} */
+
 </style>

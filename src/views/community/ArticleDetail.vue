@@ -30,16 +30,16 @@
               </tr>
             </table>
             <div>
-              <b-button variant="outline-secondary float-left" class="mt-3" @click="Back">목록 보기</b-button>
-              <b-button variant="outline-secondary float-right" class="mt-3" @click="deleteArticle">삭제</b-button>
-              <b-button variant="outline-secondary float-right" class="mt-3" @click="moveToUpdateArticle(article)">수정</b-button>
+              <b-button variant="outline-dark float-left" style="font-weight:600;" class="mt-3" @click="Back">목록 보기</b-button>
+              <b-button variant="outline-dark float-right" style="font-weight:600;" class="mt-3" @click="deleteArticle">삭제</b-button>
+              <b-button variant="outline-dark float-right" style="font-weight:600;" class="mt-3" @click="moveToUpdateArticle(article)">수정</b-button>
             </div>
         </div>
         <div v-if="article">
         <div class="mx-auto commentWrap">
             <div class="input-group mt-10 mb-10">
               <textarea class="form-control" placeholder="댓글 쓰기" v-model="content" id="comment"></textarea>
-              <b-button variant="outline-secondary float-bottom" type="button" @click="createComment">등록</b-button>
+              <b-button variant="outline-dark float-bottom" style="font-weight:600;" type="button" @click="createComment">등록</b-button>
             </div>
           <h1 v-if="blank"><hr>아직 댓글이 없어요!</h1>
           <div v-else v-for="(comment, idx) in comments" :key="idx">
@@ -48,7 +48,7 @@
                 <hr><h3>댓글 수정 중</h3>
                 <div class="input-group mt-3 mb-10">
                   <textarea class="form-control" v-model="update_content" id="comment-update"></textarea>
-                  <b-button variant="outline-secondary float-bottom" type="button" @click="updateComment">수정</b-button>
+                  <b-button variant="outline-dark float-bottom" style="font-weight:600;" type="button" @click="updateComment">수정</b-button>
                 </div>
               </div>
               <div v-else>
@@ -62,8 +62,8 @@
                   <caption class="text-lefts">{{comment.updated_at|moment('YYYY-MM-DD HH:mm') }}</caption>
                 </div>
                 <div class="btn-group float-right mt-0 mb-2" >
-                  <b-button variant="outline-secondary" @click="ActivateUpdate(comment)">수정</b-button>
-                  <b-button variant="outline-secondary" @click="deleteComment(comment)">삭제</b-button>
+                  <b-button variant="outline-dark" style="font-weight:600;" @click="ActivateUpdate(comment)">수정</b-button>
+                  <b-button variant="outline-dark" style="font-weight:600;" @click="deleteComment(comment)">삭제</b-button>
                 </div>
               </div>
             </div>
@@ -78,8 +78,8 @@
                   <caption class="text-lefts">{{comment.updated_at|moment('YYYY-MM-DD HH:mm') }}</caption>
                 </div>
                 <div class="btn-group float-right mt-0 mb-2" >
-                  <b-button variant="outline-secondary" @click="ActivateUpdate(comment)">수정</b-button>
-                  <b-button variant="outline-secondary" @click="deleteComment(comment)">삭제</b-button>
+                  <b-button variant="outline-dark" style="font-weight:600;" @click="ActivateUpdate(comment)">수정</b-button>
+                  <b-button variant="outline-dark" style="font-weight:600;" @click="deleteComment(comment)">삭제</b-button>
                 </div>
             </div>
           </div>
@@ -283,6 +283,8 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 .tbAdd {
   justify-content: center;
@@ -298,5 +300,9 @@ input {
   flex-direction: column;
   justify-content: center;
   width: 600px;
+}
+.h1 {
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 </style>

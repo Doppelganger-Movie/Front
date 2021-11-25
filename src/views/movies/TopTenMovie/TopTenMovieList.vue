@@ -22,6 +22,8 @@
             :color="active ? 'grey' : 'black'"
             @click="toggle"
             class="ma-5  ma-0 fill-height"
+            style="font-family:'Noto Sans KR', sans-serif;
+  font-weight:550;"
             height="250"
             width="170">
             <v-img
@@ -66,16 +68,10 @@ export default {
   methods: {
    moveToMovieDetail: function (movie) {
      this.selectMovie = movie.id
-     console.log(movie.id)
+    //  console.log(movie.id)
      this.$router.push({name: 'MovieDetail', params: {'movie_num':this.selectMovie}})
     },
   },
-  // computed: {
-  //   posterPath () {
-  //     const poster_url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path
-  //     return poster_url
-  //   }
-  // }
 }
 </script>
 
@@ -85,5 +81,9 @@ export default {
 }
 .container {
   text-decoration-color: white;
+}
+.p {
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 </style>

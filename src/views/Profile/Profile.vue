@@ -6,15 +6,17 @@
     <!-- DB 이미지 못불러낼 경우 vuex 저장된 self 이미지 출력 -->
     <img v-else-if="Selfurl" :src="Selfurl" class="rounded-circle mb-0 mt-3" alt="프로필 사진" 
     style="object-fit: cover;" width="200" height="200">
-    <pre class="text-black"><h4>
-Welcome!
-{{ User.username }}님
-    </h4></pre>
+    <div v-else class="text-black">
+      <b-avatar variant="dark" size=250px></b-avatar>
+      <!-- <h3>Welcome!</h3> -->
+      <h4>{{ User.username }}님
+    </h4></div>
     
       <!-- 주석 <button @click="getDoppleganger">TEST</button> -->
     <hr class="text-black" style="width:30%; text-align:center; margin-left:0 margin-top:0px;">
     <!-- 도플갱어 정보  -->
-   <h1 v-if="!doppleganger">{{ msg }}</h1>
+   <h1 v-if="!doppleganger"><br>아직 도플갱어를 찾아보지 않으셨군요!<br> 지금 바로 도플갱어를 찾아보세요.</h1>
+   <b-button class="mt-4" variant="dark" style="font-weight:600;" @click="moveTodopple">찾으러 가기</b-button>
    <div class="doppleganger" v-if="doppleganger">
     <pre><h4 class="section-sub-title mb-3 text-black">{{ User.username }}님의 도플갱어는 배우 {{ doppleganger[0].celeb }} 입니다!</h4></pre>
       <img class="rounded-circle" :src="doppleganger[0].celeb_image" alt="도플갱어 사진"
@@ -24,18 +26,19 @@ Welcome!
   <br>
   <!---주석 영화 카드 --->
      <hr class="text-black" style="width:30%; text-align:center; margin-left:0">
- <h4 class="mt-5 mb-1 text-black" v-if="doppleganger">도플갱어 {{ doppleganger[0].celeb }}의 출연영화가 궁금하다면..?</h4>
-  <div class="row row-cols-1 row-cols-md-3 mt-1 movies h-100" v-if="doppleganger" >
-    <div class="col mt-0" v-for="(poster, index) in doppleganger" :key="index">
-      <img :src="poster.celeb_movie_poster" alt="영화 사진"  @click="moveToMovieDetail(poster.celeb_movie_id)" class="card-img-top">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ poster.celeb_movie_title }}</h5>
-          <!---주석 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> --->
+ <h3 class="mt-5 mb-1 text-black" v-if="doppleganger">도플갱어 {{ doppleganger[0].celeb }}의 출연영화가 궁금하다면..?</h3>
+  <div v-if="doppleganger" class="row justify-content-center">
+    <div  v-for="(poster, idx) in doppleganger" :key="idx" class="col-lg-2 col-md-3 col-sm-4 mb-5">
+      <div class="sc-wrapper">
+        <div class="sc-img-wrapper">
+          <img :src="poster.celeb_movie_poster" alt="poster" class="img-fluid" @click="moveToMovieDetail(doppleganger.celeb_movie_id)" >
+        </div>
+        <div class="sc-content justify-content-center">
+          <h5 class="text-center mt-2">{{ poster.celeb_movie_title }}</h5>
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 
 </template>
@@ -105,6 +108,9 @@ export default {
     moveToMovieDetail: function (movie_id) {
      this.$router.push({name: 'MovieDetail', params: {'movie_num':movie_id}})
    },
+   moveTodopple () {
+      this.$router.push({name:'Doppleganger'})
+    },
   },
   created : function () {
     this.getUser()
@@ -128,13 +134,14 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 .container {
-  margin:auto 1rem;
+  /* margin:auto 1rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-h4, h5, pre {
+h1, h3, h4, h5, pre {
   font-family:'Noto Sans KR', sans-serif;
+  font-weight:600;
 }
 
 .profile {
@@ -164,7 +171,4 @@ h4, h5, pre {
   max-width:720px;
   margin-top: 1rem;
 }
-
-
-
 </style>
