@@ -18,7 +18,7 @@
                     <b-icon icon="lock" font-scale="1.5"></b-icon>
                     <input type="password" id="password" v-model="credentials.password" placeholder="비밀번호">
                   </div>
-                  <b-button variant="outline-secondary" class="mt-5 row justify-content-center" @click="login">로그인</b-button>
+                  <b-button variant="outline-dark" style="font-weight:600;" class="mt-5 row justify-content-center" @click="login">로그인</b-button>
                 </div>
               </form>
                 <router-link :to="{ name: 'Signup' }"><button class="text-blue mt-6" id="menuBtn">회원이 아니시라면 회원가입을 해주세요.</button></router-link>

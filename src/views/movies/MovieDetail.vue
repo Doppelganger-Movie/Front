@@ -95,7 +95,7 @@
                     </div>
                     <div class="w-50 mt-3">
                         <b-form-textarea id="review-input" placeholder="리뷰를 작성해주세요" rows="3" max-rows="8" v-model="content"></b-form-textarea>
-                        <b-button class="mt-3" @click="createReview" variant="light">생성</b-button>
+                        <b-button class="mt-3" @click="createReview" variant="outline-dark" style="font-weight:600;">생성</b-button>
                     </div>
                   </div>
               </div>
@@ -113,7 +113,7 @@
                         <b-form-rating variant="warning" v-model="update_vote" id="rating-inline" inline value="4"></b-form-rating>
                       </div>
                       <b-form-textarea id="review-update" rows="3" max-rows="8" v-model="update_content"></b-form-textarea>
-                      <b-button class="mt-3" @click="updateReview" variant="light">수정</b-button>
+                      <b-button class="mt-3" @click="updateReview" variant="outline-dark" style="font-weight:600;">수정</b-button>
                     </div>
                   </div> 
                   <div v-show="!update_state">
@@ -126,8 +126,8 @@
                       </div>
                       <b-list-group-item class="mt-3 text-left" style="height: 80px;">{{ review.content }}</b-list-group-item>
                       <div class="d-flex flex-row-reverse mb-2">
-                        <b-button class="mt-3" @click="deleteReview(review)" variant="outline-secondary">삭제</b-button>&nbsp;
-                        <b-button class="mt-3" @click="ActivateUpdate(review)" variant="outline-secondary">수정</b-button>
+                        <b-button class="mt-3" @click="deleteReview(review)" variant="outline-dark" style="font-weight:600;">삭제</b-button>&nbsp;
+                        <b-button class="mt-3" @click="ActivateUpdate(review)" variant="outline-dark" style="font-weight:600;">수정</b-button>
                       </div>
                     </div>
                 </div>
@@ -142,8 +142,8 @@
                     </div>
                     <b-list-group-item class="mt-3 text-left" style="height: 80px;">{{ review.content }}</b-list-group-item>
                     <div class="d-flex flex-row-reverse mb-2">
-                      <b-button class="mt-3" @click="deleteReview(review)" variant="outline-secondary">삭제</b-button>&nbsp;
-                      <b-button class="mt-3" @click="ActivateUpdate(review)" variant="outline-secondary">수정</b-button>
+                      <b-button class="mt-3" @click="deleteReview(review)" variant="outline-dark" style="font-weight:600;">삭제</b-button>&nbsp;
+                      <b-button class="mt-3" @click="ActivateUpdate(review)" variant="outline-dark" style="font-weight:600;">수정</b-button>
                     </div>
                   </div>
                 </div>
@@ -327,6 +327,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family:'Noto Sans KR', sans-serif;
+  font-weight:590;
 }
 .container {
   width: 1000px;
