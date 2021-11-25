@@ -5,7 +5,7 @@
       <div class="row justify-content-center">
         <div class="col-8 col-lg-6">
           <div class="sign-content text-center">
-            <h1>회원 가입</h1>
+            <h1>회원가입</h1>
             <h3>Welcome</h3>
             <!-- Sign Form -->
             <form class="row justify-content-center">
